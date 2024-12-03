@@ -26,7 +26,7 @@ const menuItems = [
       },
       {
         icon: "/subject.png",
-        label: "Subjects",
+        label: "Course",
         href: "/list/subjects",
         visible: ["admin"],
       },
