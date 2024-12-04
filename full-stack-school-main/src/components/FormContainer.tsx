@@ -55,6 +55,13 @@ const FormContainer = async ({ table, type, data, id }: FormContainerProps) => {
         });
         relatedData = { classes: studentBatches, grades: studentGrades };
         break;
+        case "announcement":
+          const batches = await prisma.batch.findMany({
+            select: { id: true, name: true},
+          });
+
+          relatedData = { batches: batches };
+          break;
       
 
       default:

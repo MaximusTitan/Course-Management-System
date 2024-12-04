@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  deleteAnnouncement,
   deleteBatch,
   deleteStudent,
   deleteSubject,
@@ -23,7 +24,7 @@ const deleteActionMap = {
 
   lesson: deleteSubject,
   event: deleteSubject,
-  announcement: deleteSubject,
+  announcement: deleteAnnouncement,
 };
 
 // USE LAZY LOADING

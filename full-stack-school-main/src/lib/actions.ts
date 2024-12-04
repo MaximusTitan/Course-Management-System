@@ -367,13 +367,13 @@ export const createAnnouncement = async (
     await prisma.announcement.create({
       data: {
         title: data.title,
-        description: data.description, // Ensure description is included
-        date: data.date, // Added the 'date' field
+        description: data.description, 
+        date: data.date, 
         batch: data.batchId
           ? {
-              connect: { id: data.batchId }, // Handles the optional 'batchId'
+              connect: { id: data.batchId }, 
             }
-          : undefined, // If no batchId is provided, batch remains null
+          : undefined, 
       },
     });
 
@@ -383,6 +383,46 @@ export const createAnnouncement = async (
     return { success: true, error: false };
   } catch (err) {
     console.error("Error creating announcement:", err);
+    return { success: false, error: true };
+  }
+};
+
+export const updateAnnouncement = async (
+  currentState: CurrentState,
+  data: AnnouncementSchema
+) => {
+  try {
+    await prisma.announcement.update({
+      where: {
+        id: data.id,
+      },
+      data,
+    });
+
+    // revalidatePath("/list/class");
+    return { success: true, error: false };
+  } catch (err) {
+    console.log(err);
+    return { success: false, error: true };
+  }
+};
+
+export const deleteAnnouncement = async (
+  currentState: CurrentState,
+  data: FormData
+) => {
+  const id = data.get("id") as string;
+  try {
+    await prisma.announcement.delete({
+      where: {
+        id: parseInt(id),
+      },
+    });
+
+    // revalidatePath("/list/subjects");
+    return { success: true, error: false };
+  } catch (err) {
+    console.log(err);
     return { success: false, error: true };
   }
 };
