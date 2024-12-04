@@ -80,6 +80,7 @@ export const announcementSchema = z.object({
   title: z.string().min(1, { message: "Title of the Announcement required" }),
   description: z.string().min(1, { message: "Short Description of the Announcement required" }),
   batchId: z.coerce.number().min(1, { message: "batch name is required!" }),
+  date: z.coerce.date({ message: "Valid date is required!" }),
 });
 
 export type AnnouncementSchema = z.infer<typeof announcementSchema>;

@@ -6,6 +6,7 @@ import {
   StudentSchema,
   SubjectSchema,
   TeacherSchema,
+  AnnouncementSchema,
 } from "./formValidationSchemas";
 import prisma from "./prisma";
 import { clerkClient } from "@clerk/nextjs/server";
@@ -356,3 +357,32 @@ export const deleteStudent = async (
   }
 };
 
+
+
+export const createAnnouncement = async (
+  currentState: CurrentState,
+  data: AnnouncementSchema
+) => {
+  try {
+    await prisma.announcement.create({
+      data: {
+        title: data.title,
+        description: data.description, // Ensure description is included
+        date: data.date, // Added the 'date' field
+        batch: data.batchId
+          ? {
+              connect: { id: data.batchId }, // Handles the optional 'batchId'
+            }
+          : undefined, // If no batchId is provided, batch remains null
+      },
+    });
+
+    // Uncomment if needed to revalidate paths
+    // revalidatePath("/list/announcements");
+
+    return { success: true, error: false };
+  } catch (err) {
+    console.error("Error creating announcement:", err);
+    return { success: false, error: true };
+  }
+};
