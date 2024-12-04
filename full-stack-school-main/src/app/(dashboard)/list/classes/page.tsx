@@ -78,7 +78,7 @@ const renderRow = (item: BatchList) => (
 
   const p = page ? parseInt(page) : 1;
 
-  // URL PARAMS CONDITION
+
 
   const query: Prisma.BatchWhereInput = {};
 
