@@ -53,7 +53,7 @@ const AnnouncementListPage = async ({
       key={item.id}
       className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-lamaPurpleLight"
     >
-      <td className="flex items-center gap-4 p-4">{item.title}</td>
+      <td className=" items-center gap-4 p-4">{item.title}</td>
       <td className="flex items-center gap-4 p-4">{item.description}</td>
       <td>{item.batch?.name || "-"}</td>
       <td className="hidden md:table-cell">
