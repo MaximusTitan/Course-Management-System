@@ -19,7 +19,7 @@ const Navbar = async () => {
       <div className="flex items-center gap-6 justify-end w-full">
         
         <div className="flex flex-col">
-          <span className="text-xs leading-3 font-medium">{user?.username</span>
+          <span className="text-xs leading-3 font-medium">{user?.username as string}</span>
           <span className="text-[10px] text-gray-500 text-right">
             {user?.publicMetadata?.role as string}
           </span>
